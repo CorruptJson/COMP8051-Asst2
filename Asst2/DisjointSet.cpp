@@ -10,8 +10,8 @@
 ////////////////////////////////////////////////////////////////////////////
 
 
-
-#include "stdafx.h"
+// Was included in the sample code. Commenting out for now
+// #include "stdafx.h"
 #include "DisjointSet.h"
 
 DisjointSet::DisjointSet(int setSize)

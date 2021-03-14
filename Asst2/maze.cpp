@@ -13,8 +13,9 @@
 ////////////////////////////////////////////////////////////////////////////
 
 
+// Was included in the sample code. Commenting out for now
+// #include "stdafx.h"
 
-#include "stdafx.h"
 #include <stdlib.h>
 #include <time.h>
 #include "maze.h"
