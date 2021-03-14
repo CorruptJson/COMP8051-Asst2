@@ -16,6 +16,10 @@
 		FACAB89225FE90EC00E068D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89125FE90EC00E068D2 /* main.m */; };
 		FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89B25FE910400E068D2 /* DisjointSet.cpp */; };
 		FACAB89E25FE910400E068D2 /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89C25FE910400E068D2 /* maze.cpp */; };
+		FACAB8A325FEC9A400E068D2 /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8A225FEC9A400E068D2 /* Renderer.mm */; };
+		FACAB8A825FECA8700E068D2 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FACAB8A725FECA8700E068D2 /* Shader.fsh */; };
+		FACAB8AB25FECAB400E068D2 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FACAB8AA25FECAB400E068D2 /* Shader.vsh */; };
+		FACAB8AE25FECAD100E068D2 /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8AD25FECAD100E068D2 /* GLESRenderer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,12 @@
 		FACAB89A25FE910400E068D2 /* DisjointSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisjointSet.h; sourceTree = "<group>"; };
 		FACAB89B25FE910400E068D2 /* DisjointSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisjointSet.cpp; sourceTree = "<group>"; };
 		FACAB89C25FE910400E068D2 /* maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maze.cpp; sourceTree = "<group>"; };
+		FACAB8A225FEC9A400E068D2 /* Renderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
+		FACAB8A525FEC9E200E068D2 /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		FACAB8A725FECA8700E068D2 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		FACAB8AA25FECAB400E068D2 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		FACAB8AD25FECAD100E068D2 /* GLESRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLESRenderer.cpp; sourceTree = "<group>"; };
+		FACAB8B025FECAF600E068D2 /* GLESRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLESRenderer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,12 @@
 				FACAB88D25FE90EC00E068D2 /* LaunchScreen.storyboard */,
 				FACAB89025FE90EC00E068D2 /* Info.plist */,
 				FACAB89125FE90EC00E068D2 /* main.m */,
+				FACAB8A225FEC9A400E068D2 /* Renderer.mm */,
+				FACAB8A525FEC9E200E068D2 /* Renderer.h */,
+				FACAB8A725FECA8700E068D2 /* Shader.fsh */,
+				FACAB8AA25FECAB400E068D2 /* Shader.vsh */,
+				FACAB8AD25FECAD100E068D2 /* GLESRenderer.cpp */,
+				FACAB8B025FECAF600E068D2 /* GLESRenderer.hpp */,
 			);
 			path = Asst2;
 			sourceTree = "<group>";
@@ -142,9 +158,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACAB8A825FECA8700E068D2 /* Shader.fsh in Resources */,
 				FACAB88F25FE90EC00E068D2 /* LaunchScreen.storyboard in Resources */,
 				FACAB88C25FE90EC00E068D2 /* Assets.xcassets in Resources */,
 				FACAB88A25FE90EC00E068D2 /* Main.storyboard in Resources */,
+				FACAB8AB25FECAB400E068D2 /* Shader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,8 +176,10 @@
 				FACAB88725FE90EC00E068D2 /* ViewController.m in Sources */,
 				FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */,
 				FACAB89E25FE910400E068D2 /* maze.cpp in Sources */,
+				FACAB8AE25FECAD100E068D2 /* GLESRenderer.cpp in Sources */,
 				FACAB89225FE90EC00E068D2 /* main.m in Sources */,
 				FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */,
+				FACAB8A325FEC9A400E068D2 /* Renderer.mm in Sources */,
 				FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
