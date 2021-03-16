@@ -20,6 +20,7 @@
 		FACAB8A825FECA8700E068D2 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = FACAB8A725FECA8700E068D2 /* Shader.fsh */; };
 		FACAB8AB25FECAB400E068D2 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = FACAB8AA25FECAB400E068D2 /* Shader.vsh */; };
 		FACAB8AE25FECAD100E068D2 /* GLESRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8AD25FECAD100E068D2 /* GLESRenderer.cpp */; };
+		FACAB8B425FECF9500E068D2 /* mazetest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8B325FECF9500E068D2 /* mazetest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		FACAB8AA25FECAB400E068D2 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		FACAB8AD25FECAD100E068D2 /* GLESRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLESRenderer.cpp; sourceTree = "<group>"; };
 		FACAB8B025FECAF600E068D2 /* GLESRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLESRenderer.hpp; sourceTree = "<group>"; };
+		FACAB8B325FECF9500E068D2 /* mazetest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mazetest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				FACAB8AA25FECAB400E068D2 /* Shader.vsh */,
 				FACAB8AD25FECAD100E068D2 /* GLESRenderer.cpp */,
 				FACAB8B025FECAF600E068D2 /* GLESRenderer.hpp */,
+				FACAB8B325FECF9500E068D2 /* mazetest.cpp */,
 			);
 			path = Asst2;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				FACAB88725FE90EC00E068D2 /* ViewController.m in Sources */,
 				FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */,
+				FACAB8B425FECF9500E068D2 /* mazetest.cpp in Sources */,
 				FACAB89E25FE910400E068D2 /* maze.cpp in Sources */,
 				FACAB8AE25FECAD100E068D2 /* GLESRenderer.cpp in Sources */,
 				FACAB89225FE90EC00E068D2 /* main.m in Sources */,
