@@ -152,30 +152,31 @@ int GLESRenderer::GenCube(float scale, float **vertices, float **normals,
     
     float cubeNormals[] =
     {
-        0.0f, -1.0f, 0.0f,
-        0.0f, -1.0f, 0.0f,
-        0.0f, -1.0f, 0.0f,
-        0.0f, -1.0f, 0.0f,
+        
         0.0f, 1.0f, 0.0f,
         0.0f, 1.0f, 0.0f,
         0.0f, 1.0f, 0.0f,
         0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, -1.0f,
-        0.0f, 0.0f, -1.0f,
-        0.0f, 0.0f, -1.0f,
-        0.0f, 0.0f, -1.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
         0.0f, 0.0f, 1.0f,
         0.0f, 0.0f, 1.0f,
         0.0f, 0.0f, 1.0f,
         0.0f, 0.0f, 1.0f,
-        -1.0f, 0.0f, 0.0f,
-        -1.0f, 0.0f, 0.0f,
-        -1.0f, 0.0f, 0.0f,
-        -1.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
+        0.0f, 0.0f, -1.0f,
         1.0f, 0.0f, 0.0f,
         1.0f, 0.0f, 0.0f,
         1.0f, 0.0f, 0.0f,
         1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
     };
     
     float cubeTex[] =
@@ -204,6 +205,7 @@ int GLESRenderer::GenCube(float scale, float **vertices, float **normals,
         0.0f, 1.0f,
         1.0f, 1.0f,
         1.0f, 0.0f,
+
     };
     
     // Allocate memory for buffers
@@ -247,7 +249,7 @@ int GLESRenderer::GenCube(float scale, float **vertices, float **normals,
             16, 17, 18,
             16, 18, 19,
             20, 23, 22,
-            20, 22, 21
+            20, 22, 21,
         };
         
         *indices = (int *)malloc ( sizeof ( int ) * numIndices );

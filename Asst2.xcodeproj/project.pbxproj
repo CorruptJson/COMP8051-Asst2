@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA960236260050310089B2F0 /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA960235260050310089B2F0 /* crate.jpg */; };
+		FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA96025C260068A30089B2F0 /* crateEdge.jpg */; };
 		FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88025FE90EC00E068D2 /* AppDelegate.m */; };
 		FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88325FE90EC00E068D2 /* SceneDelegate.m */; };
 		FACAB88725FE90EC00E068D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88625FE90EC00E068D2 /* ViewController.m */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		FA960235260050310089B2F0 /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
+		FA96025C260068A30089B2F0 /* crateEdge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crateEdge.jpg; sourceTree = "<group>"; };
 		FACAB87C25FE90EC00E068D2 /* Asst2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asst2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACAB87F25FE90EC00E068D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACAB88025FE90EC00E068D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		FACAB87E25FE90EC00E068D2 /* Asst2 */ = {
 			isa = PBXGroup;
 			children = (
+				FA96025C260068A30089B2F0 /* crateEdge.jpg */,
 				FA960235260050310089B2F0 /* crate.jpg */,
 				FACAB89B25FE910400E068D2 /* DisjointSet.cpp */,
 				FACAB89A25FE910400E068D2 /* DisjointSet.h */,
@@ -167,6 +170,7 @@
 			files = (
 				FACAB8A825FECA8700E068D2 /* Shader.fsh in Resources */,
 				FACAB88F25FE90EC00E068D2 /* LaunchScreen.storyboard in Resources */,
+				FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */,
 				FACAB88C25FE90EC00E068D2 /* Assets.xcassets in Resources */,
 				FA960236260050310089B2F0 /* crate.jpg in Resources */,
 				FACAB88A25FE90EC00E068D2 /* Main.storyboard in Resources */,

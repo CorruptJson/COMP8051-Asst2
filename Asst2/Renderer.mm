@@ -33,6 +33,7 @@ enum
     GLESRenderer glesRenderer;
     GLuint programObject;
     GLuint crateTexture;
+    GLuint crateTexture2;
     std::chrono::time_point<std::chrono::steady_clock> lastTime;
 
     GLKMatrix4 mvp;
@@ -76,11 +77,12 @@ enum
     isRotating = 1;
 
     crateTexture = [self setupTexture:@"crate.jpg"];
+    crateTexture2 = [self setupTexture:@"crateEdge.jpg"];
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, crateTexture);
+    
     glUniform1i(uniforms[UNIFORM_TEXTURE], 0);
 
-    glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
+    glClearColor ( 0.5f, .8f, 0.92f, 0.0f );
     glEnable(GL_DEPTH_TEST);
     lastTime = std::chrono::steady_clock::now();
 }
@@ -135,7 +137,10 @@ enum
     glEnableVertexAttribArray ( 3 );
     
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, FALSE, (const float *)mvp.m);
-    glDrawElements ( GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, indices );
+    glBindTexture(GL_TEXTURE_2D, crateTexture);
+    glDrawElements ( GL_TRIANGLES, 6, GL_UNSIGNED_INT, indices+30);
+    glBindTexture(GL_TEXTURE_2D, crateTexture2);
+    glDrawElements ( GL_TRIANGLES, 6, GL_UNSIGNED_INT, indices+24);
 }
 
 
