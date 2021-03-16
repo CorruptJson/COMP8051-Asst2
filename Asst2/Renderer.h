@@ -8,6 +8,9 @@
 
 @interface Renderer : NSObject
 
+@property float rotAngle;
+@property bool isRotating;
+
 - (void)setup:(GLKView *)view;
 - (void)loadModels;
 - (void)update;

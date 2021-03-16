@@ -18,7 +18,6 @@ public:
 
     int GenCube(float scale, float **vertices, float **normals,
                 float **texCoords, int **indices);
-    int GenSquare(float scale, float **vertices, int **indices);
 
 };
 

@@ -115,49 +115,6 @@ GLuint GLESRenderer::LoadProgram(const char *vertShaderSrc, const char *fragShad
 }
 
 
-int GLESRenderer::GenSquare(float scale, float **vertices, int **indices)
-{
-    int i;
-    int numVertices = 4;
-    int numIndices = 6;
-    
-    float cubeVerts[] =
-    {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, 0.5f,  0.0f,
-        -0.5f, 0.5f,  0.0f,
-        0.5f, -0.5f,  0.0f,
-    };
-    
-    // Allocate memory for buffers
-    if ( vertices != NULL )
-    {
-        *vertices = (float *)malloc ( sizeof ( float ) * 3 * numVertices );
-        memcpy ( *vertices, cubeVerts, sizeof ( cubeVerts ) );
-        
-        for ( i = 0; i < numVertices * 3; i++ )
-        {
-            ( *vertices ) [i] *= scale;
-        }
-    }
-    
-    // Generate the indices
-    if ( indices != NULL )
-    {
-        GLuint cubeIndices[] =
-        {
-            0, 1, 2,
-            0, 3, 1,
-        };
-        
-        *indices = (int *)malloc ( sizeof ( int ) * numIndices );
-        memcpy ( *indices, cubeIndices, sizeof ( cubeIndices ) );
-    }
-    
-    return numIndices;
-}
-
-
 int GLESRenderer::GenCube(float scale, float **vertices, float **normals,
                           float **texCoords, int **indices)
 {
