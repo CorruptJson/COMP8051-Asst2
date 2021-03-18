@@ -29,7 +29,7 @@
     glVertexAttribPointer(VertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), offsetof(Vertex, Position));
     
     glEnableVertexAttribArray(VertexAttribColor);
-    glVertexAttribPointer(VertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), offsetof(Vertex, Position));
+    glVertexAttribPointer(VertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), offsetof(Vertex, Color));
     
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
@@ -42,10 +42,10 @@
 
 - (void)setupVertexBuffer {
     const static Vertex vertices[] = {
-        {{1,-1,0}, {0,1,0,1}}, //red
+        {{1,-1,0}, {1,0,0,1}}, //red
         {{1,1,0}, {0,1,0,1}}, //green
         {{-1,1,0}, {0,1,1,1}}, // blue
-        {{-1,-1,0}, {0,1,0, 1}} // black
+        {{-1,-1,0}, {0,0,0, 1}} // black
     };
     
     const static GLubyte indices[] = {
