@@ -12,15 +12,38 @@
 
 
 const static Vertex vertices[] = {
-    {{1,-1,0}, {1,0,0,1}}, //red
-    {{1,1,0}, {0,1,0,1}}, //green
-    {{-1,1,0}, {0,1,1,1}}, // blue
-    {{-1,-1,0}, {0,0,0, 1}} // black
+    // front
+    { {1, -1, 1}, {0, 0, 0, 1}}, //1
+    {{1, 1, 1}, {0, 0, 0, 1}}, //2
+    {{-1, 1, 1}, {0, 0, 0, 1}}, //3
+    {{-1, -1, 1}, {0, 0, 0, 1}}, //4
+    
+    // back
+    {{-1,-1,-1}, {1, 1, 1, 1}}, //5
+    {{-1, 1,-1}, {1, 1, 1, 1}}, //6
+    {{1, 1, -1}, {1, 1, 1, 1}}, //7
+    {{1, -1, -1}, {1, 1, 1, 1}} //8
 };
 
 const static GLubyte indices[] = {
+    //front
     0, 1, 2,
-    2, 3, 0
+    2, 3, 0,
+    //back,
+    4, 5, 6,
+    6, 7, 4,
+    //left
+    3, 2, 5,
+    5, 4, 3,
+    //right
+    7, 6, 1,
+    1, 0, 7,
+    //top
+    1, 6, 5,
+    5, 2, 1,
+    //bottom
+    3, 4, 7,
+    7, 0, 3
 };
 // _indexCount = sizeof(indices) / sizeof(indices[0]);
 
@@ -30,5 +53,11 @@ const static GLubyte indices[] = {
     }
     return self;
 }
+
+- (void)updateWithDelta:(NSTimeInterval)dt {
+    self.rotationZ += M_PI * dt;
+    self.rotationY += M_PI * dt;
+}
+
 
 @end
