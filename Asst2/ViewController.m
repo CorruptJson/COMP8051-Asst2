@@ -13,6 +13,8 @@
     float rotY;
     float posX;
     float posY;
+    float rotationSpeed;
+    float movementSpeed;
 }
 
 - (void)viewDidLoad {
@@ -28,6 +30,10 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
         tapGesture.numberOfTapsRequired = 2;
         [self.view addGestureRecognizer:tapGesture];
+    
+    // Set default speeds for movement and rotation
+    rotationSpeed = 0.1f;
+    movementSpeed = 0.1f;
 }
 
 
@@ -40,15 +46,12 @@
 
 
 // CONTROLS
+
+// Rotate camera on drag
 - (IBAction)pan:(UIPanGestureRecognizer *)sender {
-    // Rotate cube
+    // Rotate camera
     if(sender.numberOfTouches == 1){
-        // Will use translation on screen space as rotation factor
         CGPoint translation = [sender translationInView:sender.view];
-
-        float x = translation.x/sender.view.frame.size.width;
-        float y = translation.y/sender.view.frame.size.height;
-
         // Check direction of travel
         CGPoint velocity = [sender velocityInView:self.view];
 
@@ -56,35 +59,24 @@
         if(fabs(velocity.y) > fabs(velocity.x)){
             // Right
             if(velocity.y > 0){
-                rotY += 0.1;
+                rotY += rotationSpeed;
             }
             // Left
             if(velocity.y <0){
-                rotY -= 0.1;
+                rotY -= rotationSpeed;
             }
         }
         // Travelling in x dir
         if(fabs(velocity.x) > fabs(velocity.y)){
             // Right
             if(velocity.x > 0){
-                rotX += 0.1;
+                rotX += rotationSpeed;
             }
             // Left
             if(velocity.x <0){
-                rotX -= 0.1;
+                rotX -= rotationSpeed;
             }
         }
-        
-        NSLog(@"VELOCITY X: %f", velocity.x);
-        NSLog(@"GESTURE X: %f", x);
-        NSLog(@"VELOCITY Y: %f", velocity.y);
-        NSLog(@"GESTURE Y: %f", y);
-    }
-
-    // Drag cube
-    else if(sender.numberOfTouches == 2){
-        NSLog(@"2 FING DRAG!");
-
     }
 }
 
