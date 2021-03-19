@@ -29,8 +29,8 @@
     //create objects here
     _cube = [[Cube alloc] initWithShader:_shader];
     _cube2 = [[Cube alloc] initWithShader:_shader];
-    _cube.position = GLKVector3Make(0, 0, 0);
-    _cube2.position = GLKVector3Make(-2, 0, 0);
+    _cube.position = GLKVector3Make(5, 0, 0);
+    _cube2.position = GLKVector3Make(0, 0, 0);
    
     
     
@@ -54,8 +54,7 @@
     
     // render objects
     [_cube render:viewMatrix];
-    [_cube2 render:viewMatrix];
-    [_cube2 renderAsWall];
+    [_cube2 renderAsWall:viewMatrix];
     
 
 }
