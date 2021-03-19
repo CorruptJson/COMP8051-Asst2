@@ -21,6 +21,7 @@
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="qMI-zl-HT3" appends="YES" id="qdN-kD-HTa"/>
+                            <outletCollection property="gestureRecognizers" destination="AYp-wS-8ke" appends="YES" id="q4N-CZ-lYb"/>
                         </connections>
                     </view>
                 </viewController>
@@ -30,6 +31,11 @@
                         <action selector="pan:" destination="BYZ-38-t0r" id="fq0-IT-SUz"/>
                     </connections>
                 </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="AYp-wS-8ke">
+                    <connections>
+                        <action selector="hold:" destination="BYZ-38-t0r" id="sec-an-5ob"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-197" y="94"/>
         </scene>

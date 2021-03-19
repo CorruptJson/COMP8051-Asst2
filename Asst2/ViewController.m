@@ -11,10 +11,18 @@
     // IB ACTION VARIABLES
     float rotX;
     float rotY;
+    float rotZ;
     float posX;
     float posY;
+    float posZ;
     float rotationSpeed;
     float movementSpeed;
+    float SavedRotX;
+    float SavedRotY;
+    float SavedRotZ;
+    float SavedPosX;
+    float SavedPosY;
+    float SavedPosZ;
 }
 
 - (void)viewDidLoad {
@@ -33,14 +41,30 @@
     
     // Set default speeds for movement and rotation
     rotationSpeed = 0.1f;
-    movementSpeed = 0.1f;
+    movementSpeed = 0.2f;
+    
+    // Set default camera orientation
+    posX = 0.0f;
+    posY = 0.0f;
+    posZ = -10.0f;
+    rotX = 0.0f;
+    rotY = 0.0f;
+    rotZ = 0.0f;
+    
+    // Save the orientation to be restored later.
+    SavedPosX = posX;
+    SavedPosY = posY;
+    SavedPosZ = posZ;
+    SavedRotX = rotX;
+    SavedRotY = rotY;
+    SavedRotZ = rotZ;
 }
 
 
 // Double tap handler
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
-        NSLog(@"TAPPED THE SCREEN!");
+        // Reset to starting position here.
     }
 }
 
@@ -51,7 +75,6 @@
 - (IBAction)pan:(UIPanGestureRecognizer *)sender {
     // Rotate camera
     if(sender.numberOfTouches == 1){
-        CGPoint translation = [sender translationInView:sender.view];
         // Check direction of travel
         CGPoint velocity = [sender velocityInView:self.view];
 
@@ -79,6 +102,27 @@
         }
     }
 }
+
+// Translate camera on tap
+- (IBAction)hold:(UILongPressGestureRecognizer *)sender {
+    if(sender.state == UIGestureRecognizerStateBegan){
+        // When the hold begins
+        NSLog(@"HOLD BEGAN");
+        
+        posX += movementSpeed;
+    }
+    if(sender.state == UIGestureRecognizerStateChanged){
+        // While the hold is ongoing
+        NSLog(@"HOLD CONTINUING");
+        
+        posX += movementSpeed;
+    }
+    if(sender.state == UIGestureRecognizerStateEnded){
+        // When the hold is released
+        NSLog(@"HOLD END");
+    }
+}
+
 
 
 
@@ -112,10 +156,10 @@
     glEnable(GL_CULL_FACE);
     
     // view
-    GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(0, 0, -10);
+    GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(posX, posY, posZ);
     
     // Apply adjustement factor from IBAction gesture inputs.
-    viewMatrix = GLKMatrix4MakeLookAt(0, 0, -10, rotX, rotY, 0, 0, 1, 0);
+    viewMatrix = GLKMatrix4MakeLookAt(posX, posY, posZ, rotX, rotY, rotZ, 0, 1, 0);
     
     // render objects
     [_cube render:viewMatrix];
