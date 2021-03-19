@@ -5,6 +5,8 @@
 
 @implementation BaseEffect {
     GLuint _programHandle;
+    GLuint _modelViewMatrixUniform;
+    GLuint _projectionMatrixUniform;
 }
 
 - (GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType {
@@ -53,6 +55,12 @@
     
     glLinkProgram(_programHandle);
     
+    self.modelViewMatrix = GLKMatrix4Identity;
+    _modelViewMatrixUniform = glGetUniformLocation(_programHandle, "u_ModelViewMatrix");
+    _projectionMatrixUniform = glGetUniformLocation(_programHandle, "u_ProjectionMatrix");
+    
+    
+    
     GLint linkSuccess;
     glGetProgramiv(_programHandle, GL_LINK_STATUS, &linkSuccess);
     if (linkSuccess == GL_FALSE) {
@@ -66,6 +74,8 @@
 
 - (void)prepareToDraw {
     glUseProgram(_programHandle);
+    glUniformMatrix4fv(_modelViewMatrixUniform, 1, 0, self.modelViewMatrix.m);
+    glUniformMatrix4fv(_projectionMatrixUniform, 1, 0, self.projectionMatrix.m);
 }
 
 - (instancetype)initWithVertexShader:(NSString *)vertexShader fragmentShader:
