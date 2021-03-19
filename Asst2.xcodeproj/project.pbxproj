@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC90643726054E3D00B87F48 /* Controls.m in Sources */ = {isa = PBXBuildFile; fileRef = AC90643526054E3D00B87F48 /* Controls.m */; };
 		FA46083B2603AEC300F7004E /* BaseEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = FA46083A2603AEC300F7004E /* BaseEffect.m */; };
 		FA46083F2603AFC400F7004E /* VertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA46083E2603AFC400F7004E /* VertexShader.glsl */; };
 		FA4608432603AFDB00F7004E /* FragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4608422603AFDB00F7004E /* FragmentShader.glsl */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC90643526054E3D00B87F48 /* Controls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controls.m; sourceTree = "<group>"; };
+		AC90643626054E3D00B87F48 /* Controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controls.h; sourceTree = "<group>"; };
 		FA4608392603ADBC00F7004E /* BaseEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseEffect.h; sourceTree = "<group>"; };
 		FA46083A2603AEC300F7004E /* BaseEffect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseEffect.m; sourceTree = "<group>"; };
 		FA46083D2603AF4900F7004E /* Vertex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				FACAB89B25FE910400E068D2 /* DisjointSet.cpp */,
 				FACAB89A25FE910400E068D2 /* DisjointSet.h */,
 				FACAB89025FE90EC00E068D2 /* Info.plist */,
+				AC90643626054E3D00B87F48 /* Controls.h */,
+				AC90643526054E3D00B87F48 /* Controls.m */,
 				FACAB88D25FE90EC00E068D2 /* LaunchScreen.storyboard */,
 				FACAB89125FE90EC00E068D2 /* main.m */,
 				FACAB88825FE90EC00E068D2 /* Main.storyboard */,
@@ -213,6 +218,7 @@
 				FA470486260517FF0010E1FD /* Cube.m in Sources */,
 				FACAB8B425FECF9500E068D2 /* mazeGen.cpp in Sources */,
 				FA46084C2603CC6400F7004E /* Model.m in Sources */,
+				AC90643726054E3D00B87F48 /* Controls.m in Sources */,
 				FACAB89E25FE910400E068D2 /* maze.cpp in Sources */,
 				FACAB89225FE90EC00E068D2 /* main.m in Sources */,
 				FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */,
@@ -365,6 +371,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N6RP3H788Z;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					GLES_SILENCE_DEPRICATION,
 					"DEBUG=1",
@@ -392,6 +399,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N6RP3H788Z;
 				GCC_PREPROCESSOR_DEFINITIONS = GLES_SILENCE_DEPRICATION;
 				INFOPLIST_FILE = Asst2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
