@@ -6,6 +6,7 @@
 @implementation ViewController {
     BaseEffect *_shader;
     Cube *_cube, *_cube2;
+    float i;
 }
 
 - (void)viewDidLoad {
@@ -38,7 +39,7 @@
 }
 
 
-
+// called repeatedly
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     // background color
     glClearColor(0, 1, 1, 1);
@@ -49,6 +50,7 @@
     
     // view
     GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(0, 0, -10);
+    viewMatrix = GLKMatrix4MakeLookAt(0, 0, -10, i, 0, 0, 0, 1, 0);
     
     // render objects
     [_cube render:viewMatrix];
@@ -63,6 +65,7 @@
     [_cube updateWithDelta:self.timeSinceLastUpdate];
     
     [_cube2 updateWithDelta:self.timeSinceLastUpdate];
+    i+= 0.05;
 }
 
 
