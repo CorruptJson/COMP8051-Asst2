@@ -10,6 +10,8 @@
 		FA46083B2603AEC300F7004E /* BaseEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = FA46083A2603AEC300F7004E /* BaseEffect.m */; };
 		FA46083F2603AFC400F7004E /* VertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA46083E2603AFC400F7004E /* VertexShader.glsl */; };
 		FA4608432603AFDB00F7004E /* FragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4608422603AFDB00F7004E /* FragmentShader.glsl */; };
+		FA46084C2603CC6400F7004E /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FA46084B2603CC6400F7004E /* Model.m */; };
+		FA470486260517FF0010E1FD /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = FA470485260517FF0010E1FD /* Cube.m */; };
 		FA960236260050310089B2F0 /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA960235260050310089B2F0 /* crate.jpg */; };
 		FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA96025C260068A30089B2F0 /* crateEdge.jpg */; };
 		FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88025FE90EC00E068D2 /* AppDelegate.m */; };
@@ -21,7 +23,7 @@
 		FACAB89225FE90EC00E068D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89125FE90EC00E068D2 /* main.m */; };
 		FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89B25FE910400E068D2 /* DisjointSet.cpp */; };
 		FACAB89E25FE910400E068D2 /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89C25FE910400E068D2 /* maze.cpp */; };
-		FACAB8B425FECF9500E068D2 /* mazetest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8B325FECF9500E068D2 /* mazetest.cpp */; };
+		FACAB8B425FECF9500E068D2 /* mazeGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8B325FECF9500E068D2 /* mazeGen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,10 @@
 		FA46083D2603AF4900F7004E /* Vertex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vertex.h; sourceTree = "<group>"; };
 		FA46083E2603AFC400F7004E /* VertexShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = VertexShader.glsl; sourceTree = "<group>"; };
 		FA4608422603AFDB00F7004E /* FragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = FragmentShader.glsl; sourceTree = "<group>"; };
+		FA46084A2603CC6400F7004E /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		FA46084B2603CC6400F7004E /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		FA470485260517FF0010E1FD /* Cube.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cube.m; sourceTree = "<group>"; };
+		FA470489260518210010E1FD /* Cube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
 		FA960235260050310089B2F0 /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
 		FA96025C260068A30089B2F0 /* crateEdge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crateEdge.jpg; sourceTree = "<group>"; };
 		FACAB87C25FE90EC00E068D2 /* Asst2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asst2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +54,7 @@
 		FACAB89A25FE910400E068D2 /* DisjointSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisjointSet.h; sourceTree = "<group>"; };
 		FACAB89B25FE910400E068D2 /* DisjointSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisjointSet.cpp; sourceTree = "<group>"; };
 		FACAB89C25FE910400E068D2 /* maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maze.cpp; sourceTree = "<group>"; };
-		FACAB8B325FECF9500E068D2 /* mazetest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mazetest.cpp; sourceTree = "<group>"; };
+		FACAB8B325FECF9500E068D2 /* mazeGen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mazeGen.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA4608462603C48B00F7004E /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				FA4608422603AFDB00F7004E /* FragmentShader.glsl */,
+				FA46083E2603AFC400F7004E /* VertexShader.glsl */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		FA4608482603C4CC00F7004E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA46084A2603CC6400F7004E /* Model.h */,
+				FA46084B2603CC6400F7004E /* Model.m */,
+				FA470485260517FF0010E1FD /* Cube.m */,
+				FA470489260518210010E1FD /* Cube.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		FACAB87325FE90EC00E068D2 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +107,8 @@
 		FACAB87E25FE90EC00E068D2 /* Asst2 */ = {
 			isa = PBXGroup;
 			children = (
+				FA4608482603C4CC00F7004E /* Models */,
+				FA4608462603C48B00F7004E /* Shaders */,
 				FACAB87F25FE90EC00E068D2 /* AppDelegate.h */,
 				FACAB88025FE90EC00E068D2 /* AppDelegate.m */,
 				FACAB88B25FE90EC00E068D2 /* Assets.xcassets */,
@@ -90,18 +118,16 @@
 				FA96025C260068A30089B2F0 /* crateEdge.jpg */,
 				FACAB89B25FE910400E068D2 /* DisjointSet.cpp */,
 				FACAB89A25FE910400E068D2 /* DisjointSet.h */,
-				FA4608422603AFDB00F7004E /* FragmentShader.glsl */,
 				FACAB89025FE90EC00E068D2 /* Info.plist */,
 				FACAB88D25FE90EC00E068D2 /* LaunchScreen.storyboard */,
 				FACAB89125FE90EC00E068D2 /* main.m */,
 				FACAB88825FE90EC00E068D2 /* Main.storyboard */,
 				FACAB89C25FE910400E068D2 /* maze.cpp */,
 				FACAB89925FE910400E068D2 /* maze.h */,
-				FACAB8B325FECF9500E068D2 /* mazetest.cpp */,
+				FACAB8B325FECF9500E068D2 /* mazeGen.cpp */,
 				FACAB88225FE90EC00E068D2 /* SceneDelegate.h */,
 				FACAB88325FE90EC00E068D2 /* SceneDelegate.m */,
 				FA46083D2603AF4900F7004E /* Vertex.h */,
-				FA46083E2603AFC400F7004E /* VertexShader.glsl */,
 				FACAB88525FE90EC00E068D2 /* ViewController.h */,
 				FACAB88625FE90EC00E068D2 /* ViewController.m */,
 			);
@@ -184,7 +210,9 @@
 			files = (
 				FACAB88725FE90EC00E068D2 /* ViewController.m in Sources */,
 				FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */,
-				FACAB8B425FECF9500E068D2 /* mazetest.cpp in Sources */,
+				FA470486260517FF0010E1FD /* Cube.m in Sources */,
+				FACAB8B425FECF9500E068D2 /* mazeGen.cpp in Sources */,
+				FA46084C2603CC6400F7004E /* Model.m in Sources */,
 				FACAB89E25FE910400E068D2 /* maze.cpp in Sources */,
 				FACAB89225FE90EC00E068D2 /* main.m in Sources */,
 				FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */,

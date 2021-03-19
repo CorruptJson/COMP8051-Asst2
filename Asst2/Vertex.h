@@ -1,3 +1,4 @@
+#import <UIKit/UIKit.h>
 
 typedef enum {
     VertexAttribPosition = 0,
