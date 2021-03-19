@@ -8,7 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "Cube.h"
 
-@implementation Cube
+@implementation Cube {
+    bool isRotating;
+}
+
+
 
 
 const static Vertex vertices[] = {
@@ -49,15 +53,25 @@ const static GLubyte indices[] = {
 
 - (instancetype)initWithShader:(BaseEffect *)shader {
     if ((self = [super initWithName:"cube" shader:shader vertices:(Vertex *)vertices vertexCount:sizeof(vertices)/sizeof(vertices[0]) indices:indices indexCount:sizeof(indices)/sizeof(indices[0])])) {
+        
+        isRotating = true;
             
     }
     return self;
 }
 
 - (void)updateWithDelta:(NSTimeInterval)dt {
-    self.rotationZ += M_PI * dt;
-    self.rotationY += M_PI * dt;
+    if (isRotating) {
+        self.rotationZ += M_PI * dt;
+        self.rotationY += M_PI * dt;
+    }
 }
+
+- (void)renderAsWall {
+    isRotating = false;
+}
+
+
 
 
 @end

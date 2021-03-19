@@ -10,5 +10,9 @@
 
 @interface Cube : Model
 
+@property (nonatomic) bool isRotating;
+
 - (instancetype)initWithShader:(BaseEffect *)shader;
+- (void)renderAsWall;
+
 @end

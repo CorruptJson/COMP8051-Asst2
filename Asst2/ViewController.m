@@ -5,7 +5,7 @@
 
 @implementation ViewController {
     BaseEffect *_shader;
-    Cube *_cube;
+    Cube *_cube, *_cube2;
 }
 
 - (void)viewDidLoad {
@@ -27,7 +27,11 @@
     
     //create objects here
     _cube = [[Cube alloc] initWithShader:_shader];
+    _cube2 = [[Cube alloc] initWithShader:_shader];
     _cube.position = GLKVector3Make(0, 0, 0);
+    _cube2.position = GLKVector3Make(-2, 0, 0);
+   
+    
     
     
     _shader.projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(85), self.view.bounds.size.width / self.view.bounds.size.height, 1, 150);
@@ -44,10 +48,12 @@
     glEnable(GL_CULL_FACE);
     
     // view
-    GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(0, 0, -5);
+    GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(0, 0, -10);
     
     // render objects
     [_cube render:viewMatrix];
+    [_cube2 render:viewMatrix];
+    [_cube2 renderAsWall];
     
 
 }
@@ -55,6 +61,8 @@
 // updates every frame
 - (void)update {
     [_cube updateWithDelta:self.timeSinceLastUpdate];
+    
+    [_cube2 updateWithDelta:self.timeSinceLastUpdate];
 }
 
 
