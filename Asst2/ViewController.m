@@ -15,6 +15,8 @@
     float posX;
     float posY;
     float posZ;
+    float rotationAngleX;
+    float rotationAngleY;
     float rotationSpeed;
     float movementSpeed;
     float SavedRotX;
@@ -23,6 +25,8 @@
     float SavedPosX;
     float SavedPosY;
     float SavedPosZ;
+    float rotation;
+    float savedRotation;
 }
 
 - (void)viewDidLoad {
@@ -40,7 +44,9 @@
         [self.view addGestureRecognizer:tapGesture];
     
     // Set default speeds for movement and rotation
-    rotationSpeed = 0.1f;
+    rotationAngleX = 0.0f;
+    rotationAngleY = 0.0f;
+    rotationSpeed = 1.0f;
     movementSpeed = 0.2f;
     
     // Set default camera orientation
@@ -50,6 +56,7 @@
     rotX = 0.0f;
     rotY = 0.0f;
     rotZ = 0.0f;
+    rotation = 45.0f;
     
     // Save the orientation to be restored later.
     SavedPosX = posX;
@@ -58,6 +65,7 @@
     SavedRotX = rotX;
     SavedRotY = rotY;
     SavedRotZ = rotZ;
+    savedRotation = rotation;
 }
 
 
@@ -79,26 +87,53 @@
         CGPoint velocity = [sender velocityInView:self.view];
 
         // Travelling in y dir
-        if(fabs(velocity.y) > fabs(velocity.x)){
-            // Right
-            if(velocity.y > 0){
-                rotY += rotationSpeed;
-            }
-            // Left
-            if(velocity.y <0){
-                rotY -= rotationSpeed;
-            }
-        }
+//        if(fabs(velocity.y) > fabs(velocity.x)){
+//            // Up
+//            if(velocity.y > 0){
+//                rotationAngleY += rotationSpeed;
+////                rotY = posY + sin(rotationAngleY);
+//            }
+//            // Down
+//            if(velocity.y <0){
+//                rotationAngleY -= rotationSpeed;
+////                rotY = posY + sin(rotationAngleY);
+//            }
+//        }
         // Travelling in x dir
         if(fabs(velocity.x) > fabs(velocity.y)){
+            if(rotation > 360){
+                rotation = 0;
+            }
+            if(rotation < 0){
+                rotation = 360;
+            }
+            if(rotation <= 0 || rotation > 90){
+                rotationAngleY = 90;
+                rotationAngleX = -90 + (rotation * 2);
+            }
+            if(rotation <= 90 || rotation > 180){
+                rotationAngleY = 90 - (rotation * 2);
+                rotationAngleX = 90;
+            }
+            if(rotation <= 180 || rotation > 270){
+                rotationAngleY = -90;
+                rotationAngleX = 90 - (rotation * 2);
+            }
+            if(rotation <= 270 || rotation < 360){
+                rotationAngleY = -90 + (rotation * 2);
+                rotationAngleX = -90;
+            }
+                
+            
+            // Left
+            if(velocity.x < 0){
+                rotation -= rotationSpeed;
+            }
             // Right
             if(velocity.x > 0){
-                rotX += rotationSpeed;
+                rotation += rotationSpeed;
             }
-            // Left
-            if(velocity.x <0){
-                rotX -= rotationSpeed;
-            }
+            NSLog(@"ROTATION: %f", rotation);
         }
     }
 }
@@ -159,7 +194,7 @@
     GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(posX, posY, posZ);
     
     // Apply adjustement factor from IBAction gesture inputs.
-    viewMatrix = GLKMatrix4MakeLookAt(posX, posY, posZ, rotX, rotY, rotZ, 0, 1, 0);
+    viewMatrix = GLKMatrix4MakeLookAt(posX, posY, posZ, rotationAngleX, rotationAngleY, rotZ, 0, 1, 0);
     
     // render objects
     [_cube render:viewMatrix];
