@@ -46,7 +46,7 @@
     // Set default speeds for movement and rotation
     rotationAngleX = 0.0f;
     rotationAngleY = 0.0f;
-    rotationSpeed = 1.0f;
+    rotationSpeed = 100.0f;
     movementSpeed = 0.2f;
     
     // Set default camera orientation
@@ -56,7 +56,7 @@
     rotX = 0.0f;
     rotY = 0.0f;
     rotZ = 0.0f;
-    rotation = 45.0f;
+    rotation = 0.0f;
     
     // Save the orientation to be restored later.
     SavedPosX = posX;
@@ -130,29 +130,29 @@
 //        }
         // Travelling in x dir
         if(fabs(velocity.x) > fabs(velocity.y)){
-            if(rotation > 360){
-                rotation = 0;
-            }
-            if(rotation < 0){
-                rotation = 360;
-            }
-            else if(rotation >= 0 || rotation < 90){
-                rotationAngleY = (90.0f) / 10.0f;
-                rotationAngleX = (-90.0f + (rotation * 2.0f))/10.0f;
-            }
-            else if(rotation >= 90 || rotation < 180){
-                rotationAngleY = (90.0f - ((rotation-90) * 2.0f))/10.0f;
-                rotationAngleX = 90.0f/10.0f;
-            }
-            else if(rotation >= 180 || rotation < 270){
-                rotationAngleY = (-90.0f)/10.0f;
-                rotationAngleX = (90.0f - ((rotation-180) * 2.0f))/10.0f;
-            }
-            else if(rotation >= 270 || rotation < 360){
-                rotationAngleY = (-90.0f + ((rotation-270) * 2.0f))/10.0f;
-                rotationAngleX = -90.0f/10.0f;
-            }
-                
+//            if(rotation > 360){
+//                rotation = 0;
+//            }
+//            if(rotation < 0){
+//                rotation = 360;
+//            }
+//            else if(rotation >= 0 || rotation < 90){
+//                rotationAngleY = (90.0f) / 10.0f;
+//                rotationAngleX = (-90.0f + (rotation * 2.0f))/10.0f;
+//            }
+//            else if(rotation >= 90 || rotation < 180){
+//                rotationAngleY = (90.0f - ((rotation-90) * 2.0f))/10.0f;
+//                rotationAngleX = 90.0f/10.0f;
+//            }
+//            else if(rotation >= 180 || rotation < 270){
+//                rotationAngleY = (-90.0f)/10.0f;
+//                rotationAngleX = (90.0f - ((rotation-180) * 2.0f))/10.0f;
+//            }
+//            else if(rotation >= 270 || rotation < 360){
+//                rotationAngleY = (-90.0f + ((rotation-270) * 2.0f))/10.0f;
+//                rotationAngleX = -90.0f/10.0f;
+//            }
+//
             
             // Left
             if(velocity.x < 0){
@@ -162,8 +162,8 @@
             if(velocity.x > 0){
                 rotation += rotationSpeed;
             }
-            NSLog(@"ROTATION: %f", rotation);
-            NSLog(@"X: %f", rotationAngleX);
+//            NSLog(@"ROTATION: %f", rotation);
+//            NSLog(@"X: %f", rotationAngleX);
         }
     }
 }
@@ -232,9 +232,10 @@
     GLKVector3 rotatedWithForward = GLKMatrix4MultiplyVector3(rotationMatrix, forwardDir);
     GLKVector3 positionVec = GLKVector3Make(posX, posY, posZ);
     GLKVector3 target = GLKVector3Add(positionVec, rotatedWithForward);
+    GLKMatrix4 lookMatrix = GLKMatrix4MakeLookAt(0, 0, 0, target.x, target.y, target.z, 0, 1, 0);
     
     // Apply adjustement factor from IBAction gesture inputs.
-    viewMatrix = GLKMatrix4Multiply(viewMatrix, GLKMatrix4MakeLookAt(SavedPosX, SavedPosY, SavedPosZ, rotationAngleX, 0, 0, 0, 1, 0));
+    viewMatrix = GLKMatrix4Multiply(viewMatrix, lookMatrix);
     
     // render objects
     [_cube render:viewMatrix];
