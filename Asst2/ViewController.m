@@ -19,9 +19,7 @@
     float rotationAngleY;
     float rotationSpeed;
     float movementSpeed;
-    float SavedRotX;
-    float SavedRotY;
-    float SavedRotZ;
+    float savedRotX;
     float SavedPosX;
     float SavedPosY;
     float SavedPosZ;
@@ -65,7 +63,6 @@ NSMutableArray<Cube *> *cubes;
     
     // Set default speeds for movement and rotation
     rotationAngleX = 0.0f;
-    rotationAngleY = 0.0f;
     rotationSpeed = 1.0f;
     movementSpeed = 0.2f;
     
@@ -73,18 +70,13 @@ NSMutableArray<Cube *> *cubes;
     posX = 0.0f;
     posY = 0.0f;
     posZ = -7.0f;
-    rotX = 0.0f;
-    rotY = 0.0f;
-    rotZ = 0.0f;
     rotation = 45.0f;
     
     // Save the orientation to be restored later.
     SavedPosX = posX;
     SavedPosY = posY;
     SavedPosZ = posZ;
-    SavedRotX = rotX;
-    SavedRotY = rotY;
-    SavedRotZ = rotZ;
+    savedRotX = rotationAngleX;
     savedRotation = rotation;
 }
 
@@ -93,6 +85,11 @@ NSMutableArray<Cube *> *cubes;
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
         // Reset to starting position here.
+        posX = SavedPosX;
+        posY = SavedPosY;
+        posZ = SavedPosZ;
+        rotationAngleX = savedRotX;
+        rotation = savedRotation;
     }
 }
 
