@@ -156,7 +156,7 @@ const static GLubyte indices[] = {
 }
 
 - (void)renderAsWall:(GLKMatrix4)parentModelViewMatrix {
-    //_isRotating = false;
+    _isRotating = false;
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
@@ -165,10 +165,10 @@ const static GLubyte indices[] = {
     
     glBindVertexArrayOES(_vao);
     
-    _north = BOTH;
-    _west = BOTH;
-    _south = BOTH;
-    _east = BOTH;
+    //_north = BOTH;
+    //_west = BOTH;
+    //_south = BOTH;
+    //_east = BOTH;
     
     
     // wall drawing

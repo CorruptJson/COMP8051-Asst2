@@ -22,8 +22,6 @@
 		FACAB88F25FE90EC00E068D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACAB88D25FE90EC00E068D2 /* LaunchScreen.storyboard */; };
 		FACAB89225FE90EC00E068D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89125FE90EC00E068D2 /* main.m */; };
 		FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89B25FE910400E068D2 /* DisjointSet.cpp */; };
-		FACAB89E25FE910400E068D2 /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89C25FE910400E068D2 /* maze.cpp */; };
-		FACAB8B425FECF9500E068D2 /* mazeGen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB8B325FECF9500E068D2 /* mazeGen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,11 +48,8 @@
 		FACAB88E25FE90EC00E068D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FACAB89025FE90EC00E068D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACAB89125FE90EC00E068D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FACAB89925FE910400E068D2 /* maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maze.h; sourceTree = "<group>"; };
 		FACAB89A25FE910400E068D2 /* DisjointSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisjointSet.h; sourceTree = "<group>"; };
 		FACAB89B25FE910400E068D2 /* DisjointSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisjointSet.cpp; sourceTree = "<group>"; };
-		FACAB89C25FE910400E068D2 /* maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maze.cpp; sourceTree = "<group>"; };
-		FACAB8B325FECF9500E068D2 /* mazeGen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mazeGen.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +117,6 @@
 				FACAB88D25FE90EC00E068D2 /* LaunchScreen.storyboard */,
 				FACAB89125FE90EC00E068D2 /* main.m */,
 				FACAB88825FE90EC00E068D2 /* Main.storyboard */,
-				FACAB89C25FE910400E068D2 /* maze.cpp */,
-				FACAB89925FE910400E068D2 /* maze.h */,
-				FACAB8B325FECF9500E068D2 /* mazeGen.cpp */,
 				FACAB88225FE90EC00E068D2 /* SceneDelegate.h */,
 				FACAB88325FE90EC00E068D2 /* SceneDelegate.m */,
 				FA46083D2603AF4900F7004E /* Vertex.h */,
@@ -211,9 +203,7 @@
 				FACAB88725FE90EC00E068D2 /* ViewController.m in Sources */,
 				FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */,
 				FA470486260517FF0010E1FD /* Cube.m in Sources */,
-				FACAB8B425FECF9500E068D2 /* mazeGen.cpp in Sources */,
 				AC90643726054E3D00B87F48 /* Controls.m in Sources */,
-				FACAB89E25FE910400E068D2 /* maze.cpp in Sources */,
 				FACAB89225FE90EC00E068D2 /* main.m in Sources */,
 				FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */,
 				FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */,

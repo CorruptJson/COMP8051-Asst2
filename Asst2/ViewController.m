@@ -27,11 +27,29 @@
     float SavedPosZ;
     float rotation;
     float savedRotation;
+
+    
 }
+
+
+//entrance: bottom left
+//exit: top right
+
+bool *maze[4][4] = {
+    {true, true, false, true},
+    {true, false, false, true},
+    {true, true, true, true},
+    {true, false, false, true},
+};
+
+NSMutableArray<Cube *> *cubes;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    cubes = [[NSMutableArray alloc] initWithCapacity:16];
+    
     GLKView *view = (GLKView *)self.view;
     view.context = [[EAGLContext alloc] initWithAPI:(kEAGLRenderingAPIOpenGLES3)];
     
@@ -135,6 +153,7 @@
             }
             NSLog(@"ROTATION: %f", rotation);
             NSLog(@"X: %f", rotationAngleX);
+            NSLog(@"Y: %f", rotationAngleY);
         }
     }
 }
@@ -170,10 +189,31 @@
                initWithVertexShader:@"VertexShader.glsl" fragmentShader:@"FragmentShader.glsl"];
     
     //create objects here
-    _cube = [[Cube alloc] initWithShader:_shader];
-    _cube2 = [[Cube alloc] initWithShader:_shader];
-    _cube.position = GLKVector3Make(5, 0, 0);
-    _cube2.position = GLKVector3Make(0, 0, 0);
+    
+    //_cube2 = [[Cube alloc] initWithShader:_shader];
+
+    
+    for (int r = 0; r < 4; r++) {
+        for (int c = 0; c < 4; c++) {
+            [cubes insertObject:[[Cube alloc] initWithShader:_shader] atIndex:(r * c)];
+            cubes[r,c].position = GLKVector3Make(r * -2, 0 ,c * -2);
+            
+            if ( (r == 0 && c != 4 ) || maze[r-1][c] == false) {
+                cubes[r*c].north = BOTH;
+            }
+            if ( c == 0 || maze[r][c-1] == false) {
+                cubes[r*c].west = BOTH;
+            }
+            if ( c == 4 || maze[r][c+1] == false) {
+                cubes[r*c].east = BOTH;
+            }
+            if ( r == 4 || maze[r+1][c] == false) {
+                cubes[r*c].south = BOTH;
+            }
+
+            
+        }
+    }
    
     
     
@@ -198,7 +238,12 @@
     viewMatrix = GLKMatrix4MakeLookAt(posX, posY, posZ, rotationAngleX, 0, 0, 0, 1, 0);
     
     // render objects
+    for (int i = 0; i < 16; i++) {
+        [cubes[i] renderAsWall:viewMatrix];
+    }
+    
     [_cube render:viewMatrix];
+    
     [_cube2 renderAsWall:viewMatrix];
 
 }
