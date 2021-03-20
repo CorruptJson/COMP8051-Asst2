@@ -132,20 +132,7 @@ NSMutableArray<Cube *> *cubes;
     if(sender.numberOfTouches == 2){
         // Check direction of travel
         CGPoint velocity = [sender velocityInView:self.view];
-
-        // Travelling in y dir
-//        if(fabs(velocity.y) > fabs(velocity.x)){
-//            // Up
-//            if(velocity.y > 0){
-//                rotationAngleY += rotationSpeed;
-////                rotY = posY + sin(rotationAngleY);
-//            }
-//            // Down
-//            if(velocity.y <0){
-//                rotationAngleY -= rotationSpeed;
-////                rotY = posY + sin(rotationAngleY);
-//            }
-//        }
+        
         // Travelling in x dir
         if(fabs(velocity.x) > fabs(velocity.y)){
             if(rotation > 360){
@@ -180,36 +167,9 @@ NSMutableArray<Cube *> *cubes;
             if(velocity.x > 0){
                 rotation += rotationSpeed;
             }
-            NSLog(@"ROTATION: %f", rotation);
-            NSLog(@"X: %f", rotationAngleX);
-            NSLog(@"Y: %f", rotationAngleY);
         }
     }
 }
-
-// Translate camera on tap
-- (IBAction)hold:(UILongPressGestureRecognizer *)sender {
-    if(sender.state == UIGestureRecognizerStateBegan){
-        // When the hold begins
-        NSLog(@"HOLD BEGAN");
-        
-        posX += movementSpeed;
-    }
-    if(sender.state == UIGestureRecognizerStateChanged){
-        // While the hold is ongoing
-        NSLog(@"HOLD CONTINUING");
-        
-        posX += movementSpeed;
-    }
-    if(sender.state == UIGestureRecognizerStateEnded){
-        // When the hold is released
-        NSLog(@"HOLD END");
-    }
-}
-
-
-
-
 
 
 // called from viewDidLoad
@@ -220,7 +180,8 @@ NSMutableArray<Cube *> *cubes;
     //create objects here
     
     _cube = [[Cube alloc] initWithShader:_shader];
-
+    _cube.position = GLKVector3Make(0,0,-7);
+    _cube.scale = 0.5;
     
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
@@ -284,35 +245,31 @@ NSMutableArray<Cube *> *cubes;
     GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(posX, posY, posZ);
     
     // Rotation
-    GLKQuaternion quat = GLKQuaternionMakeWithAngleAndAxis(-rotation, rotationAngleX, rotationAngleY, 0);
+    //GLKQuaternion quat = GLKQuaternionMakeWithAngleAndAxis(-rotation, rotationAngleX, rotationAngleY, 0);
     
-    GLKMatrix4 rotationMatrix = GLKMatrix4MakeWithQuaternion(quat);
+    //GLKMatrix4 rotationMatrix = GLKMatrix4MakeWithQuaternion(quat);
     
-    GLKVector3 forwardDir = GLKVector3Make(SavedPosX, SavedPosY, SavedPosZ);
-    GLKVector3 rotatedWithForward = GLKMatrix4MultiplyVector3(rotationMatrix, forwardDir);
-    GLKVector3 positionVec = GLKVector3Make(posX, posY, posZ);
-    GLKVector3 target = GLKVector3Add(positionVec, rotatedWithForward);
+//    GLKVector3 forwardDir = GLKVector3Make(SavedPosX, SavedPosY, SavedPosZ);
+//    GLKVector3 rotatedWithForward = GLKMatrix4MultiplyVector3(rotationMatrix, forwardDir);
+//    GLKVector3 positionVec = GLKVector3Make(posX, posY, posZ);
+//    GLKVector3 target = GLKVector3Add(positionVec, rotatedWithForward);
     
     // Apply adjustement factor from IBAction gesture inputs.
     viewMatrix = GLKMatrix4Multiply(viewMatrix, GLKMatrix4MakeLookAt(SavedPosX, SavedPosY, SavedPosZ, rotationAngleX, 0, 0, 0, 1, 0));
+    
     
     // render objects
     for (int i = 0; i < 16; i++) {
         [cubes[i] renderAsWall:viewMatrix];
     }
-    
     [_cube render:viewMatrix];
-    
-    [_cube2 renderAsWall:viewMatrix];
+
 
 }
 
 // updates every frame
 - (void)update {
     [_cube updateWithDelta:self.timeSinceLastUpdate];
-    
-    [_cube2 updateWithDelta:self.timeSinceLastUpdate];
-    i+= 0.05;
 }
 
 

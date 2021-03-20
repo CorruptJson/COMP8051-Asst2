@@ -23,10 +23,10 @@
 
 const static Vertex vertices[] = {
     // front
-    { {1, -1, 1}, {0, 0, 0, 1}, {1, 0}}, //1
-    {{1, 1, 1}, {0, 0, 0, 1}, {1, 1}}, //2
-    {{-1, 1, 1}, {0, 0, 0, 1}, {0, 1}}, //3
-    {{-1, -1, 1}, {0, 0, 0, 1}, {0, 0}}, //4
+    { {1, -1, 1}, {1, 1, 1, 1}, {1, 0}}, //1
+    {{1, 1, 1}, {1, 1, 1, 1}, {1, 1}}, //2
+    {{-1, 1, 1}, {1, 1, 1, 1}, {0, 1}}, //3
+    {{-1, -1, 1}, {1, 1, 1, 1}, {0, 0}}, //4
     
     // back
     {{-1,-1,-1}, {1, 1, 1, 1}, {1, 0}}, //5
@@ -35,10 +35,10 @@ const static Vertex vertices[] = {
     {{1, -1, -1}, {1, 1, 1, 1}, {0, 0}}, //8
     
     // Left
-    {{-1, -1, 1}, {0, 0, 0, 1}, {1, 0}},
-    {{-1, 1, 1}, {0, 0, 0, 1}, {1, 1}},
-    {{-1, 1, -1}, {0, 0, 0, 1}, {0, 1}},
-    {{-1, -1, -1}, {0, 0, 0, 1}, {0, 0}},
+    {{-1, -1, 1}, {1, 1, 1, 1}, {1, 0}},
+    {{-1, 1, 1}, {1, 1, 1, 1}, {1, 1}},
+    {{-1, 1, -1}, {1, 1, 1, 1}, {0, 1}},
+    {{-1, -1, -1}, {1, 1, 1, 1}, {0, 0}},
     
     // Right
     {{1, -1, -1}, {1, 1, 1, 1}, {1, 0}},
@@ -47,10 +47,10 @@ const static Vertex vertices[] = {
     {{1, -1, 1}, {1, 1, 1, 1}, {0, 0}},
     
     // Top
-    {{1, 1, 1}, {0, 0, 0, 1}, {1, 0}},
-    {{1, 1, -1}, {0, 0, 0, 1}, {1, 1}},
-    {{-1, 1, -1}, {0, 0, 0, 1}, {0, 1}},
-    {{-1, 1, 1}, {0, 0, 0, 1}, {0, 0}},
+    {{1, 1, 1}, {1, 1, 1, 1}, {1, 0}},
+    {{1, 1, -1}, {1, 1, 1, 1}, {1, 1}},
+    {{-1, 1, -1}, {1, 1, 1, 1}, {0, 1}},
+    {{-1, 1, 1}, {1, 1, 1, 1}, {0, 0}},
     
     // Bottom
     {{1, -1, -1}, {1, 1, 1, 1}, {1, 0}},
@@ -115,6 +115,10 @@ const static GLubyte indices[] = {
         self.rotationZ = 0;
         self.scale = 1.0;
         
+        self.tex1 = [self loadTexture:@"crate.jpg"];
+        self.tex2 = [self loadTexture:@"crateEdge.jpg"];
+        
+        
         
         glGenVertexArraysOES(1, &_vao);
         glBindVertexArrayOES(_vao);
@@ -152,7 +156,6 @@ const static GLubyte indices[] = {
         // LOAD DESIRED TEXTURE
         _isRotating = true;
         _shader = shader;
-            
     }
     return self;
 }
@@ -175,11 +178,8 @@ const static GLubyte indices[] = {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
     _shader.modelViewMatrix = modelViewMatrix;
-    _shader.tex = self.tex;
-    [self loadTexture:@"crateEdge.jpg"];
+    _shader.tex = self.tex1;
     [_shader prepareToDraw];
-    
-    
     
     glBindVertexArrayOES(_vao);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, 0);
@@ -192,7 +192,7 @@ const static GLubyte indices[] = {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
     _shader.modelViewMatrix = modelViewMatrix;
-    [self loadTexture:@"crate.jpg"];
+    _shader.tex = self.tex2;
     [_shader prepareToDraw];
     
     glBindVertexArrayOES(_vao);
@@ -222,11 +222,6 @@ const static GLubyte indices[] = {
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 18);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 18+36);
     }
-    
-    
-    
-    
-    
     glBindVertexArrayOES(0);
 }
 
@@ -238,17 +233,18 @@ const static GLubyte indices[] = {
     }
 }
 
--(void)loadTexture: (NSString *)filename {
+-(GLuint)loadTexture: (NSString *)filename {
     NSError *error;
     NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
     NSDictionary *options = @{ GLKTextureLoaderOriginBottomLeft: @YES };
     GLKTextureInfo *info = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-    
+
     if(info == nil){
         NSLog(@"Error loading texture file: %@", error.localizedDescription);
     } else{
-        self.tex = info.name;
+        return info.name;
     }
+    return nil;
 }
 
 

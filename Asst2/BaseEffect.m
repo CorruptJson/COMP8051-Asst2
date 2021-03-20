@@ -84,6 +84,9 @@
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, self.tex);
     glUniform1i(_texUniform, 1);// Pass in one since we are using texture unit 1 in glActiveTexture
+//    glActiveTexture(GL_TEXTURE2);
+//    glBindTexture(GL_TEXTURE_2D, self.tex[1]);
+//    glUniform1i(_texUniform, 2);// Pass in one since we are using texture unit 1 in glActiveTexture
 }
 
 - (instancetype)initWithVertexShader:(NSString *)vertexShader fragmentShader:
