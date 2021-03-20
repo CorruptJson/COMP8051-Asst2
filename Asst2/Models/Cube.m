@@ -153,7 +153,6 @@ const static GLubyte indices[] = {
 
 - (instancetype)initWithShader:(BaseEffect *)shader {
     if ((self = [self initWithName:"cube" shader:shader vertices:(Vertex *)vertices vertexCount:sizeof(vertices)/sizeof(vertices[0]) indices:indices indexCount:sizeof(indices)/sizeof(indices[0])])) {
-        // LOAD DESIRED TEXTURE
         _isRotating = true;
         _shader = shader;
     }
@@ -201,11 +200,6 @@ const static GLubyte indices[] = {
     
     glBindVertexArrayOES(_vao);
     
-    //_north = BOTH;
-    //_west = BOTH;
-    //_south = BOTH;
-    //_east = BOTH;
-    
     
     // wall drawing
     if (_north != EMPTY) {
@@ -218,7 +212,7 @@ const static GLubyte indices[] = {
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 12+36);
     }
     if (_south != EMPTY) {
-       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 6);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 6);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 6+36);
     }
     if (_west != EMPTY) {
@@ -239,7 +233,6 @@ const static GLubyte indices[] = {
 
 - (void)updateWithDelta:(NSTimeInterval)dt {
     if (_isRotating) {
-        //self.rotationZ += M_PI * dt * 0.1;
         self.rotationY += M_PI * dt * 0.5;
     }
 }

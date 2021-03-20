@@ -15,7 +15,6 @@
 		FA4704982605BE4A0010E1FD /* wall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA4704972605BE4A0010E1FD /* wall.jpg */; };
 		FA47049B2605BE5A0010E1FD /* floor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA47049A2605BE5A0010E1FD /* floor.jpg */; };
 		FA960236260050310089B2F0 /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA960235260050310089B2F0 /* crate.jpg */; };
-		FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA96025C260068A30089B2F0 /* crateEdge.jpg */; };
 		FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88025FE90EC00E068D2 /* AppDelegate.m */; };
 		FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88325FE90EC00E068D2 /* SceneDelegate.m */; };
 		FACAB88725FE90EC00E068D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88625FE90EC00E068D2 /* ViewController.m */; };
@@ -23,7 +22,6 @@
 		FACAB88C25FE90EC00E068D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACAB88B25FE90EC00E068D2 /* Assets.xcassets */; };
 		FACAB88F25FE90EC00E068D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACAB88D25FE90EC00E068D2 /* LaunchScreen.storyboard */; };
 		FACAB89225FE90EC00E068D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89125FE90EC00E068D2 /* main.m */; };
-		FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FACAB89B25FE910400E068D2 /* DisjointSet.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +37,6 @@
 		FA4704972605BE4A0010E1FD /* wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall.jpg; sourceTree = "<group>"; };
 		FA47049A2605BE5A0010E1FD /* floor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floor.jpg; sourceTree = "<group>"; };
 		FA960235260050310089B2F0 /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
-		FA96025C260068A30089B2F0 /* crateEdge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crateEdge.jpg; sourceTree = "<group>"; };
 		FACAB87C25FE90EC00E068D2 /* Asst2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asst2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACAB87F25FE90EC00E068D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACAB88025FE90EC00E068D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -52,8 +49,6 @@
 		FACAB88E25FE90EC00E068D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FACAB89025FE90EC00E068D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACAB89125FE90EC00E068D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FACAB89A25FE910400E068D2 /* DisjointSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisjointSet.h; sourceTree = "<group>"; };
-		FACAB89B25FE910400E068D2 /* DisjointSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DisjointSet.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +80,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		FA47049E2605C7C20010E1FD /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				FA47049A2605BE5A0010E1FD /* floor.jpg */,
+				FA4704972605BE4A0010E1FD /* wall.jpg */,
+				FA960235260050310089B2F0 /* crate.jpg */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
 		FACAB87325FE90EC00E068D2 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +109,7 @@
 		FACAB87E25FE90EC00E068D2 /* Asst2 */ = {
 			isa = PBXGroup;
 			children = (
-				FA47049A2605BE5A0010E1FD /* floor.jpg */,
-				FA4704972605BE4A0010E1FD /* wall.jpg */,
+				FA47049E2605C7C20010E1FD /* textures */,
 				FA4608482603C4CC00F7004E /* Models */,
 				FA4608462603C48B00F7004E /* Shaders */,
 				FACAB87F25FE90EC00E068D2 /* AppDelegate.h */,
@@ -113,10 +117,6 @@
 				FACAB88B25FE90EC00E068D2 /* Assets.xcassets */,
 				FA4608392603ADBC00F7004E /* BaseEffect.h */,
 				FA46083A2603AEC300F7004E /* BaseEffect.m */,
-				FA960235260050310089B2F0 /* crate.jpg */,
-				FA96025C260068A30089B2F0 /* crateEdge.jpg */,
-				FACAB89B25FE910400E068D2 /* DisjointSet.cpp */,
-				FACAB89A25FE910400E068D2 /* DisjointSet.h */,
 				FACAB89025FE90EC00E068D2 /* Info.plist */,
 				AC90643626054E3D00B87F48 /* Controls.h */,
 				AC90643526054E3D00B87F48 /* Controls.m */,
@@ -190,7 +190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACAB88F25FE90EC00E068D2 /* LaunchScreen.storyboard in Resources */,
-				FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */,
 				FA46083F2603AFC400F7004E /* VertexShader.glsl in Resources */,
 				FA47049B2605BE5A0010E1FD /* floor.jpg in Resources */,
 				FACAB88C25FE90EC00E068D2 /* Assets.xcassets in Resources */,
@@ -214,7 +213,6 @@
 				AC90643726054E3D00B87F48 /* Controls.m in Sources */,
 				FACAB89225FE90EC00E068D2 /* main.m in Sources */,
 				FACAB88425FE90EC00E068D2 /* SceneDelegate.m in Sources */,
-				FACAB89D25FE910400E068D2 /* DisjointSet.cpp in Sources */,
 				FA46083B2603AEC300F7004E /* BaseEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
