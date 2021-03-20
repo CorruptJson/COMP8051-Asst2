@@ -173,15 +173,21 @@ const static GLubyte indices[] = {
     
     // wall drawing
     if (_north != EMPTY) {
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0+36);
     }
     if (_east != EMPTY) {
+        
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 12);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 12+36);
     }
     if (_south != EMPTY) {
+       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 6);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 6+36);
     }
     if (_west != EMPTY) {
+        
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 18);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 18+36);
     }
     

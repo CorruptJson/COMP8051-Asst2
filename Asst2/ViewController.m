@@ -36,7 +36,7 @@
 //exit: top right
 
 bool *maze[4][4] = {
-    {true, true, false, true},
+    {false, false, false, true},
     {true, false, false, true},
     {true, true, true, true},
     {true, false, false, true},
@@ -224,21 +224,37 @@ NSMutableArray<Cube *> *cubes;
     
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
-            [cubes insertObject:[[Cube alloc] initWithShader:_shader] atIndex:(r * c)];
-            cubes[r,c].position = GLKVector3Make(r * -2, 0 ,c * -2);
+            [cubes insertObject:[[Cube alloc] initWithShader:_shader] atIndex:((r * 4) + c)];
+            cubes[(r * 4) + c].position = GLKVector3Make(c * -2, 0 ,r * -2);
             
-            if ( (r == 0 && c != 4 ) || maze[r-1][c] == false) {
-                cubes[r*c].north = BOTH;
+           //if( r * 4 + c == 3){
+                if ( (r == 0 && c != 3 ) || ((r * 4 + c != 4) && maze[r-1][c] == false)) {
+                    cubes[(r * 4) + c].north = BOTH;
+                }
+                if ( c == 0 || maze[r][c-1] == false) {
+                    cubes[(r * 4) + c].west = BOTH;
+                }
+                if ( c == 3 || maze[r][c+1] == false) {
+                    cubes[(r * 4) + c].east = BOTH;
+                }
+                if ( (r == 3 && c!= 0) || ((r * 4 + c != 12) && maze[r+1][c] == false)) {
+                    cubes[(r * 4) + c].south = BOTH;
+                }
+           //}
+            /*
+            if ( (r == 0 && c != 3 )) {
+                cubes[(r * 4) + c].north = BOTH;
             }
-            if ( c == 0 || maze[r][c-1] == false) {
-                cubes[r*c].west = BOTH;
+            if ( (r == 3 && c!= 0) ) {
+                cubes[(r * 4) + c].south = BOTH;
             }
-            if ( c == 4 || maze[r][c+1] == false) {
-                cubes[r*c].east = BOTH;
+            if ( c == 0 ) {
+                cubes[(r * 4) + c].west = BOTH;
             }
-            if ( r == 4 || maze[r+1][c] == false) {
-                cubes[r*c].south = BOTH;
+            if ( c == 3 ) {
+                cubes[(r * 4) + c].east = BOTH;
             }
+            */
 
             
         }
