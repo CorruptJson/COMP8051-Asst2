@@ -12,6 +12,8 @@
 		FA46083F2603AFC400F7004E /* VertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA46083E2603AFC400F7004E /* VertexShader.glsl */; };
 		FA4608432603AFDB00F7004E /* FragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4608422603AFDB00F7004E /* FragmentShader.glsl */; };
 		FA470486260517FF0010E1FD /* Cube.m in Sources */ = {isa = PBXBuildFile; fileRef = FA470485260517FF0010E1FD /* Cube.m */; };
+		FA4704982605BE4A0010E1FD /* wall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA4704972605BE4A0010E1FD /* wall.jpg */; };
+		FA47049B2605BE5A0010E1FD /* floor.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA47049A2605BE5A0010E1FD /* floor.jpg */; };
 		FA960236260050310089B2F0 /* crate.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA960235260050310089B2F0 /* crate.jpg */; };
 		FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA96025C260068A30089B2F0 /* crateEdge.jpg */; };
 		FACAB88125FE90EC00E068D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACAB88025FE90EC00E068D2 /* AppDelegate.m */; };
@@ -34,6 +36,8 @@
 		FA4608422603AFDB00F7004E /* FragmentShader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = FragmentShader.glsl; sourceTree = "<group>"; };
 		FA470485260517FF0010E1FD /* Cube.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cube.m; sourceTree = "<group>"; };
 		FA470489260518210010E1FD /* Cube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
+		FA4704972605BE4A0010E1FD /* wall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wall.jpg; sourceTree = "<group>"; };
+		FA47049A2605BE5A0010E1FD /* floor.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floor.jpg; sourceTree = "<group>"; };
 		FA960235260050310089B2F0 /* crate.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crate.jpg; sourceTree = "<group>"; };
 		FA96025C260068A30089B2F0 /* crateEdge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crateEdge.jpg; sourceTree = "<group>"; };
 		FACAB87C25FE90EC00E068D2 /* Asst2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asst2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +104,8 @@
 		FACAB87E25FE90EC00E068D2 /* Asst2 */ = {
 			isa = PBXGroup;
 			children = (
+				FA47049A2605BE5A0010E1FD /* floor.jpg */,
+				FA4704972605BE4A0010E1FD /* wall.jpg */,
 				FA4608482603C4CC00F7004E /* Models */,
 				FA4608462603C48B00F7004E /* Shaders */,
 				FACAB87F25FE90EC00E068D2 /* AppDelegate.h */,
@@ -186,10 +192,12 @@
 				FACAB88F25FE90EC00E068D2 /* LaunchScreen.storyboard in Resources */,
 				FA96025D260068A30089B2F0 /* crateEdge.jpg in Resources */,
 				FA46083F2603AFC400F7004E /* VertexShader.glsl in Resources */,
+				FA47049B2605BE5A0010E1FD /* floor.jpg in Resources */,
 				FACAB88C25FE90EC00E068D2 /* Assets.xcassets in Resources */,
 				FA960236260050310089B2F0 /* crate.jpg in Resources */,
 				FA4608432603AFDB00F7004E /* FragmentShader.glsl in Resources */,
 				FACAB88A25FE90EC00E068D2 /* Main.storyboard in Resources */,
+				FA4704982605BE4A0010E1FD /* wall.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

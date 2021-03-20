@@ -115,9 +115,9 @@ const static GLubyte indices[] = {
         self.rotationZ = 0;
         self.scale = 1.0;
         
-        self.tex1 = [self loadTexture:@"crate.jpg"];
-        self.tex2 = [self loadTexture:@"crateEdge.jpg"];
-        
+        self.crateTex = [self loadTexture:@"crate.jpg"];
+        self.floorTex = [self loadTexture:@"floor.jpg"];
+        self.wallTex = [self loadTexture:@"wall.jpg"];
         
         
         glGenVertexArraysOES(1, &_vao);
@@ -178,7 +178,7 @@ const static GLubyte indices[] = {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
     _shader.modelViewMatrix = modelViewMatrix;
-    _shader.tex = self.tex1;
+    _shader.tex = self.crateTex;
     [_shader prepareToDraw];
     
     glBindVertexArrayOES(_vao);
@@ -186,13 +186,17 @@ const static GLubyte indices[] = {
     glBindVertexArrayOES(0);
 }
 
+
+
+
+
 - (void)renderAsWall:(GLKMatrix4)parentModelViewMatrix {
     _isRotating = false;
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
     _shader.modelViewMatrix = modelViewMatrix;
-    _shader.tex = self.tex2;
+    _shader.tex = self.wallTex;
     [_shader prepareToDraw];
     
     glBindVertexArrayOES(_vao);
@@ -222,7 +226,14 @@ const static GLubyte indices[] = {
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 18);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 18+36);
     }
+    
+    _shader.tex = self.floorTex;
+    [_shader prepareToDraw];
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 30 + 36);
+    
+    
     glBindVertexArrayOES(0);
+    
 }
 
 

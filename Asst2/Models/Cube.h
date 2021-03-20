@@ -30,7 +30,7 @@ typedef enum Wall{
 @property (nonatomic) float scale;
 @property (nonatomic) bool isRotating;
 @property (nonatomic) enum Wall north, east, south, west;
-@property (nonatomic) GLuint tex1, tex2;
+@property (nonatomic) GLuint crateTex, wallTex, floorTex;
 
 
 - (instancetype)initWithName:(char *)name shader:(BaseEffect *)shader vertices:(Vertex *)vertices vertexCount:(unsigned int)vertexCount indices:(GLubyte *) indices indexCount:(unsigned int)indexCount;
@@ -38,6 +38,7 @@ typedef enum Wall{
 - (GLKMatrix4)modelMatrix;
 - (void)render:(GLKMatrix4)parentModelViewMatrix;
 - (void)renderAsWall:(GLKMatrix4)parentModelViewMatrix;
+- (void)renderAsFloor:(GLKMatrix4)parentModelViewMatrix;
 - (void)updateWithDelta:(NSTimeInterval)dt;
 -(GLuint)loadTexture: (NSString *)filename;
 

@@ -5,7 +5,7 @@
 
 @implementation ViewController {
     BaseEffect *_shader;
-    Cube *_cube, *_cube2;
+    Cube *_cube;
     float i;
     
     // IB ACTION VARIABLES
@@ -53,6 +53,8 @@ NSMutableArray<Cube *> *cubes;
     GLKView *view = (GLKView *)self.view;
     view.context = [[EAGLContext alloc] initWithAPI:(kEAGLRenderingAPIOpenGLES3)];
     
+    view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
+    
     [EAGLContext setCurrentContext:view.context];
     [self setupScene];
     
@@ -70,7 +72,7 @@ NSMutableArray<Cube *> *cubes;
     // Set default camera orientation
     posX = 0.0f;
     posY = 0.0f;
-    posZ = -10.0f;
+    posZ = -7.0f;
     rotX = 0.0f;
     rotY = 0.0f;
     rotZ = 0.0f;
@@ -180,42 +182,37 @@ NSMutableArray<Cube *> *cubes;
     //create objects here
     
     _cube = [[Cube alloc] initWithShader:_shader];
-    _cube.position = GLKVector3Make(0,0,-7);
+    _cube.position = GLKVector3Make(1.5,0,-9);
     _cube.scale = 0.5;
+
     
+    // Set walls to be active for maze
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
             [cubes insertObject:[[Cube alloc] initWithShader:_shader] atIndex:((r * 4) + c)];
             cubes[(r * 4) + c].position = GLKVector3Make(c * -2, 0 ,r * -2);
             
-           //if( r * 4 + c == 3){
-                if ( (r == 0 && c != 3 ) || ((r * 4 + c != 4) && maze[r-1][c] == false)) {
-                    cubes[(r * 4) + c].north = BOTH;
-                }
-                if ( c == 0 || maze[r][c-1] == false) {
-                    cubes[(r * 4) + c].west = BOTH;
-                }
-                if ( c == 3 || maze[r][c+1] == false) {
-                    cubes[(r * 4) + c].east = BOTH;
-                }
-                if ( (r == 3 && c!= 0) || ((r * 4 + c != 12) && maze[r+1][c] == false)) {
-                    cubes[(r * 4) + c].south = BOTH;
-                }
-           //}
-            /*
-            if ( (r == 0 && c != 3 )) {
+            if ( (r == 0 && c != 3 ) || ((r * 4 + c != 3) && maze[r-1][c] == false)) {
                 cubes[(r * 4) + c].north = BOTH;
             }
-            if ( (r == 3 && c!= 0) ) {
-                cubes[(r * 4) + c].south = BOTH;
-            }
-            if ( c == 0 ) {
+            if ( c == 0 || maze[r][c-1] == false) {
                 cubes[(r * 4) + c].west = BOTH;
             }
-            if ( c == 3 ) {
+            if ( c == 3 || maze[r][c+1] == false) {
                 cubes[(r * 4) + c].east = BOTH;
             }
-            */
+            if ( (r == 3 && c!= 0) || ((r * 4 + c != 12) && maze[r+1][c] == false)) {
+                cubes[(r * 4) + c].south = BOTH;
+            }
+            // Center empty walls
+            if (r != 0 && r != 3 && c != 0 && c!=3 && maze[r][c] == false) {
+                cubes[(r * 4) + c].north = EMPTY;
+                cubes[(r * 4) + c].west = EMPTY;
+                cubes[(r * 4) + c].east = EMPTY;
+                cubes[(r * 4) + c].south = EMPTY;
+            }
+            
+
 
             
         }
@@ -232,10 +229,9 @@ NSMutableArray<Cube *> *cubes;
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     // background color
     glClearColor(0, 1, 1, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    // backface culling
-    glEnable(GL_CULL_FACE);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+
     
     // Enable blend mode for texturing
     glEnable(GL_BLEND);
