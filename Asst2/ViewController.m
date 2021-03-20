@@ -219,7 +219,7 @@ NSMutableArray<Cube *> *cubes;
     
     //create objects here
     
-    //_cube2 = [[Cube alloc] initWithShader:_shader];
+    _cube = [[Cube alloc] initWithShader:_shader];
 
     
     for (int r = 0; r < 4; r++) {
@@ -275,6 +275,10 @@ NSMutableArray<Cube *> *cubes;
     
     // backface culling
     glEnable(GL_CULL_FACE);
+    
+    // Enable blend mode for texturing
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     // view
     GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(posX, posY, posZ);

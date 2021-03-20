@@ -23,16 +23,40 @@
 
 const static Vertex vertices[] = {
     // front
-    { {1, -1, 1}, {0, 0, 0, 1}}, //1
-    {{1, 1, 1}, {0, 0, 0, 1}}, //2
-    {{-1, 1, 1}, {0, 0, 0, 1}}, //3
-    {{-1, -1, 1}, {0, 0, 0, 1}}, //4
+    { {1, -1, 1}, {0, 0, 0, 1}, {1, 0}}, //1
+    {{1, 1, 1}, {0, 0, 0, 1}, {1, 1}}, //2
+    {{-1, 1, 1}, {0, 0, 0, 1}, {0, 1}}, //3
+    {{-1, -1, 1}, {0, 0, 0, 1}, {0, 0}}, //4
     
     // back
-    {{-1,-1,-1}, {1, 1, 1, 1}}, //5
-    {{-1, 1,-1}, {1, 1, 1, 1}}, //6
-    {{1, 1, -1}, {1, 1, 1, 1}}, //7
-    {{1, -1, -1}, {1, 1, 1, 1}} //8
+    {{-1,-1,-1}, {1, 1, 1, 1}, {1, 0}}, //5
+    {{-1, 1,-1}, {1, 1, 1, 1}, {1, 1}}, //6
+    {{1, 1, -1}, {1, 1, 1, 1}, {0, 1}}, //7
+    {{1, -1, -1}, {1, 1, 1, 1}, {0, 0}}, //8
+    
+    // Left
+    {{-1, -1, 1}, {0, 0, 0, 1}, {1, 0}},
+    {{-1, 1, 1}, {0, 0, 0, 1}, {1, 1}},
+    {{-1, 1, -1}, {0, 0, 0, 1}, {0, 1}},
+    {{-1, -1, -1}, {0, 0, 0, 1}, {0, 0}},
+    
+    // Right
+    {{1, -1, -1}, {1, 1, 1, 1}, {1, 0}},
+    {{1, 1,-1}, {1, 1, 1, 1}, {1, 1}},
+    {{1, 1, 1}, {1, 1, 1, 1}, {0, 1}},
+    {{1, -1, 1}, {1, 1, 1, 1}, {0, 0}},
+    
+    // Top
+    {{1, 1, 1}, {0, 0, 0, 1}, {1, 0}},
+    {{1, 1, -1}, {0, 0, 0, 1}, {1, 1}},
+    {{-1, 1, -1}, {0, 0, 0, 1}, {0, 1}},
+    {{-1, 1, 1}, {0, 0, 0, 1}, {0, 0}},
+    
+    // Bottom
+    {{1, -1, -1}, {1, 1, 1, 1}, {1, 0}},
+    {{1, -1, 1}, {1, 1, 1, 1}, {1, 1}},
+    {{-1, -1, 1}, {1, 1, 1, 1}, {0, 1}},
+    {{-1, -1, -1}, {1, 1, 1, 1}, {0, 0}}
 };
 
 
@@ -44,17 +68,17 @@ const static GLubyte indices[] = {
     4, 5, 6,
     6, 7, 4,
     //left
-    3, 2, 5,
-    5, 4, 3,
+    8, 9, 10,
+    10, 11, 8,
     //right
-    7, 6, 1,
-    1, 0, 7,
+    12, 13, 14,
+    14, 15, 12,
     //top
-    1, 6, 5,
-    5, 2, 1,
+    16, 17, 18,
+    18, 19, 16,
     //bottom
-    3, 4, 7,
-    7, 0, 3,
+    20, 21, 22,
+    22, 23, 20,
     
     // INVERTED
     //front
@@ -64,17 +88,17 @@ const static GLubyte indices[] = {
     6, 5, 4,
     4, 7, 6,
     //left
-    5, 2, 3,
-    3, 4, 5,
+    10, 9, 8,
+    8, 11, 10,
     //right
-    1, 6, 7,
-    7, 0, 1,
+    14, 13, 12,
+    12, 15, 14,
     //top
-    5, 6, 1,
-    1, 2, 5,
+    18, 17, 16,
+    16, 19, 18,
     //bottom
-    7, 4, 3,
-    3, 0, 7
+    22, 21, 20,
+    20, 23, 22
 };
 
 // constructor
@@ -111,6 +135,9 @@ const static GLubyte indices[] = {
 
         glEnableVertexAttribArray(VertexAttribColor);
         glVertexAttribPointer(VertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), offsetof(Vertex, Color));
+        
+        glEnableVertexAttribArray(VertexAttribTexture);
+        glVertexAttribPointer(VertexAttribTexture, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), offsetof(Vertex, Texture));
 
         // reset binds
         glBindVertexArrayOES(0);
@@ -122,7 +149,7 @@ const static GLubyte indices[] = {
 
 - (instancetype)initWithShader:(BaseEffect *)shader {
     if ((self = [self initWithName:"cube" shader:shader vertices:(Vertex *)vertices vertexCount:sizeof(vertices)/sizeof(vertices[0]) indices:indices indexCount:sizeof(indices)/sizeof(indices[0])])) {
-        
+        // LOAD DESIRED TEXTURE
         _isRotating = true;
         _shader = shader;
             
@@ -148,7 +175,11 @@ const static GLubyte indices[] = {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
     _shader.modelViewMatrix = modelViewMatrix;
+    _shader.tex = self.tex;
+    [self loadTexture:@"crateEdge.jpg"];
     [_shader prepareToDraw];
+    
+    
     
     glBindVertexArrayOES(_vao);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, 0);
@@ -161,6 +192,7 @@ const static GLubyte indices[] = {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(parentModelViewMatrix, [self modelMatrix]);
     
     _shader.modelViewMatrix = modelViewMatrix;
+    [self loadTexture:@"crate.jpg"];
     [_shader prepareToDraw];
     
     glBindVertexArrayOES(_vao);
@@ -203,6 +235,19 @@ const static GLubyte indices[] = {
     if (_isRotating) {
         //self.rotationZ += M_PI * dt * 0.1;
         self.rotationY += M_PI * dt * 0.5;
+    }
+}
+
+-(void)loadTexture: (NSString *)filename {
+    NSError *error;
+    NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+    NSDictionary *options = @{ GLKTextureLoaderOriginBottomLeft: @YES };
+    GLKTextureInfo *info = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
+    
+    if(info == nil){
+        NSLog(@"Error loading texture file: %@", error.localizedDescription);
+    } else{
+        self.tex = info.name;
     }
 }
 
