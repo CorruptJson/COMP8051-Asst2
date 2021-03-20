@@ -81,8 +81,37 @@
 
 // Rotate camera on drag
 - (IBAction)pan:(UIPanGestureRecognizer *)sender {
-    // Rotate camera
+    // Move Camera
     if(sender.numberOfTouches == 1){
+        CGPoint velocity = [sender velocityInView:self.view];
+        
+        // Y-direction
+        if(fabs(velocity.y) > fabs(velocity.x)){
+            // Up
+            if(velocity.y > 0){
+                // USING POS Z HERE SINCE IT IS Y ON SCREEN SPACE BUT CORRELATING MOVEMENT IS Z IN 3D SPACE
+                posZ += movementSpeed;
+            }
+            // Down
+            if(velocity.y < 0){
+                posZ -= movementSpeed;
+            }
+        }
+        // X-direction
+        if(fabs(velocity.x) > fabs(velocity.y)){
+            // Right
+            if(velocity.x > 0){
+                posX += movementSpeed;
+            }
+            // Left
+            if(velocity.x < 0){
+                posX -= movementSpeed;
+            }
+        }
+    }
+    
+    // Rotate camera
+    if(sender.numberOfTouches == 2){
         // Check direction of travel
         CGPoint velocity = [sender velocityInView:self.view];
 
@@ -194,8 +223,18 @@
     // view
     GLKMatrix4 viewMatrix = GLKMatrix4MakeTranslation(posX, posY, posZ);
     
+    // Rotation
+    GLKQuaternion quat = GLKQuaternionMakeWithAngleAndAxis(-rotation, rotationAngleX, rotationAngleY, 0);
+    
+    GLKMatrix4 rotationMatrix = GLKMatrix4MakeWithQuaternion(quat);
+    
+    GLKVector3 forwardDir = GLKVector3Make(SavedPosX, SavedPosY, SavedPosZ);
+    GLKVector3 rotatedWithForward = GLKMatrix4MultiplyVector3(rotationMatrix, forwardDir);
+    GLKVector3 positionVec = GLKVector3Make(posX, posY, posZ);
+    GLKVector3 target = GLKVector3Add(positionVec, rotatedWithForward);
+    
     // Apply adjustement factor from IBAction gesture inputs.
-    viewMatrix = GLKMatrix4MakeLookAt(posX, posY, posZ, rotationAngleX, 0, 0, 0, 1, 0);
+    viewMatrix = GLKMatrix4Multiply(viewMatrix, GLKMatrix4MakeLookAt(SavedPosX, SavedPosY, SavedPosZ, rotationAngleX, 0, 0, 0, 1, 0));
     
     // render objects
     [_cube render:viewMatrix];
