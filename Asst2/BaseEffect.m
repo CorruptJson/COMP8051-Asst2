@@ -5,6 +5,9 @@
 
 @implementation BaseEffect {
     GLuint _programHandle;
+    GLuint _modelViewMatrixUniform;
+    GLuint _projectionMatrixUniform;
+    GLuint _texUniform;
 }
 
 - (GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType {
@@ -50,8 +53,16 @@
     
     glBindAttribLocation(_programHandle, VertexAttribPosition, "a_Position");
     glBindAttribLocation(_programHandle, VertexAttribColor, "a_Color");
+    glBindAttribLocation(_programHandle, VertexAttribTexture, "a_Texture");
     
     glLinkProgram(_programHandle);
+    
+    self.modelViewMatrix = GLKMatrix4Identity;
+    _modelViewMatrixUniform = glGetUniformLocation(_programHandle, "u_ModelViewMatrix");
+    _projectionMatrixUniform = glGetUniformLocation(_programHandle, "u_ProjectionMatrix");
+    _texUniform = glGetUniformLocation(_programHandle, "u_Texture");
+    
+    
     
     GLint linkSuccess;
     glGetProgramiv(_programHandle, GL_LINK_STATUS, &linkSuccess);
@@ -66,6 +77,14 @@
 
 - (void)prepareToDraw {
     glUseProgram(_programHandle);
+    glUniformMatrix4fv(_modelViewMatrixUniform, 1, 0, self.modelViewMatrix.m);
+    glUniformMatrix4fv(_projectionMatrixUniform, 1, 0, self.projectionMatrix.m);
+    
+    // Apply texture
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, self.tex);
+    glUniform1i(_texUniform, 1);// Pass in one since we are using texture unit 1 in glActiveTexture
+
 }
 
 - (instancetype)initWithVertexShader:(NSString *)vertexShader fragmentShader:
